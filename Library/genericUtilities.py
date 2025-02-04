@@ -4,6 +4,7 @@ from selenium.webdriver.support.expected_conditions import visibility_of_element
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
+from Tests.conftest import driver
 
 
 def wait(func):
@@ -72,10 +73,11 @@ class SeleniumWrapper:
                 alert.send_keys(value)
         except NoAlertPresentException:
             print("No alert present")
-    # def find_elements(self,locator):
-    #     elements=self.driver.find_elements(*locator)
-    #     for element in elements:
-    #         return element
+    def switch_to_current_window(self,original_window):
+        self.driver.switch_to.window(original_window)
+    def find_elements(self, locator):
+            return self.driver.find_elements(*locator)
+
 
 
 
